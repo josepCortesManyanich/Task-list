@@ -23,7 +23,7 @@ function CrearTarea() {
         <label>Description</label>
                 <input type="text" placeholder="Description" name="description" value={description} onChange={(e) => {setDescription(e.target.value)}}/>
         <label>Estado</label>
-            <select value={estado} name="done" onChange={(e) => {setDone(e.target.value)}}>
+            <select value={estado} name="done" onChange={(e) => {setEstado(e.target.value)}}>
                     <option value="Realizada">👌 </option>
                     <option value="Por hacer">❌ </option>
             </select>

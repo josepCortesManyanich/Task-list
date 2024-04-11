@@ -1,18 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 import Tarea from './Componentes/Tarea';
+import { Link } from 'react-router-dom';
+import CrearTarea from './Componentes/CrearTarea';
 
 function App() {
   return (
     <div className="App">
+      <CrearTarea/>
       <div>
-        <h4> Lista de Tareas</h4>
         <Tarea/>
       </div>
       <button>
-        <Link to='/crear'>
-          Crear tarea
-        </Link>
+        
       </button>
     </div>
   );
