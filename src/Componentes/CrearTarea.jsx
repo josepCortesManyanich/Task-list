@@ -10,6 +10,7 @@ function CrearTarea() {
         description:'',
         propiedad:'Raquel',
 })
+const[mostrar, setMostrar] = useState(false)
 
 const handleChange = (e) => {
        
@@ -21,7 +22,7 @@ const handleChange = (e) => {
         })
       }
 
-    const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
         e.preventDefault();
         try {
           const newTask = await axios.post('http://localhost:3002/app/tarea', task)
@@ -33,10 +34,17 @@ const handleChange = (e) => {
         }
       }
 
+const handleContenido = async () => {
+        setMostrar(!mostrar)
+}
+
     
     return (
     <div>
-       <form onSubmit={handleSubmit}>
+        <button onClick={handleContenido}>
+                {mostrar ? 'Ocultar' : 'Crear'}
+        </button>
+        {mostrar && ( <form onSubmit={handleSubmit}>
        <label>Nombre</label>
                 <input type="text" placeholder="Nombre" name="name" value={task.name} onChange={handleChange} />
         <label>Prioridad</label>
@@ -52,7 +60,8 @@ const handleChange = (e) => {
                 <input type="text" placeholder="Description" name="description" value={task.description} onChange={handleChange}/>
                 
                 <button type="submit">CREAR</button>
-         </form>
+         </form>)}
+      
                 
     </div>
   )
