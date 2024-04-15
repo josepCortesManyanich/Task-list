@@ -12,10 +12,6 @@ import Realizadas from '../Componentes/Realizadas'
 function Tarea() {
   const[task, setTask] = useState([])
   
-  
-
- 
-
   useEffect(() => {
     const data = async () =>{
     
@@ -34,8 +30,6 @@ function Tarea() {
     setTask([...task, tareaCreada ])
   }
  
-
-
   const handleDone = async (id) =>{
     try {
       const response = await axios.post(`http://localhost:3002/app/tareaDone/${id}`);
@@ -47,22 +41,17 @@ function Tarea() {
     }
   }
 
-
-
-  
-
-
-
     return (     
-     <div>
+     <div className='main-container'>
       <h3>Tareas realizadas:<Realizadas/></h3>
-        <div> 
+        <div className='task-container'> 
           {task.length > 0 ? ( 
           <ul> 
             {task.map((elemento) => 
                 ( <li key={elemento._id} className='item'> 
-                <Link to={`/${elemento._id}`}>
-                  <p>{elemento.name}</p> 
+                <Link to={`/${elemento._id}`} className='texto-item'>
+                <h4>{elemento.name}</h4>
+                <p >Propiedad:{elemento.propiedad} </p>
                 </Link>
                 <button onClick={() => handleDone(elemento._id)}>COMPLETADA</button>
                 </li> ))} 
