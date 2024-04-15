@@ -4,11 +4,14 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import CrearTarea from '../Componentes/CrearTarea'
 import { Link } from 'react-router-dom'
+import DoneTask from '../Componentes/DoneTask'
 
 
 
 function Tarea() {
   const[task, setTask] = useState([])
+  const [tareasCompletadas, setTareasCompletadas] = useState([])
+  
 
  
 
@@ -29,16 +32,17 @@ function Tarea() {
   const tareaActualizada = (tareaCreada) =>{
     setTask([...task, tareaCreada ])
   }
+ 
 
-  const handleDone = async (id) =>{
-    try {
-      const doneTask = await axios.post(`http://localhost:3002/app/tareaDone/${id}`)
-      const response = await axios.get('http://localhost:3002/app/tarea')
-      setTask(response.data.data)
-    } catch (error) {
-      console.error(error)
-    }
-  }
+
+  const handleDone = (id) => {
+    const tareaCompletada = task.find((e) => e._id === id);
+    setTareasCompletadas([...tareasCompletadas, tareaCompletada]);
+    setTask(task.filter((e) => e._id !== id));
+  };
+
+
+
   
 
   const handleDelete = async (id) =>{
@@ -66,6 +70,9 @@ function Tarea() {
                 </li> ))} 
                 </ul> ) 
             : ( <p>No hay tareas disponibles</p> )} 
+        </div>
+        <div>
+          <DoneTask tareasCompletadas={tareasCompletadas} />
         </div>
         <div>
           <CrearTarea tareaActualizada={tareaActualizada}/>
