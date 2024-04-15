@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 
-function CrearTarea() {
+function CrearTarea({tareaActualizada}) {
  const [task, setTask] = useState({
         name: '',
         prioridad:'',
@@ -21,18 +21,21 @@ const handleChange = (e) => {
           }
         })
       }
+    
 
  const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const newTask = await axios.post('http://localhost:3002/app/tarea', task)
-          console.log(newTask)
-          setTask(newTask)
+                const newTask = await axios.post('http://localhost:3002/app/tarea', task)
+                console.log(newTask.data.data)
+                const nuevaTarea = newTask.data.data;
+                tareaActualizada(nuevaTarea)
 
         } catch (error) {
           console.error(error);
         }
       }
+     
 
 const handleContenido = async () => {
         setMostrar(!mostrar)
