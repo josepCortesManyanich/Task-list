@@ -5,8 +5,12 @@ import { useEffect } from 'react'
 import CrearTarea from './CrearTarea'
 import { Link } from 'react-router-dom'
 
+
+
 function Tarea() {
   const[task, setTask] = useState([])
+
+ 
 
   useEffect(() => {
     const data = async () =>{
@@ -22,6 +26,16 @@ function Tarea() {
     data()
   },[])
 
+  const handleDelete = async (id) =>{
+    try {
+      const deleteTask = await axios.delete(`http://localhost:3002/app/tarea/${id}`)
+      const response = await axios.get('http://localhost:3002/app/tarea')
+      setTask(response.data.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
     return (     
      <div>
         <div> 
@@ -32,6 +46,7 @@ function Tarea() {
                 <Link to={`/${elemento._id}`}>
                   <p>{elemento.name}</p> 
                 </Link>
+                <button onClick={()=>handleDelete(elemento._id)}>BORRAR</button>
                 </li> ))} 
                 </ul> ) 
             : ( <p>No hay tareas disponibles</p> )} 
