@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
+import CrearTarea from './CrearTarea'
+import { Link } from 'react-router-dom'
 
 function Tarea() {
   const[task, setTask] = useState([])
@@ -11,7 +13,7 @@ function Tarea() {
     
       try {
         const response = await axios.get('http://localhost:3002/app/tarea')
-        console.log(response.data)
+        console.log(response.data.data)
         setTask(response.data.data)
       } catch (error) {
         console.error(error)
@@ -21,18 +23,23 @@ function Tarea() {
   },[])
 
     return (     
-      <div> 
-        {task.length > 0 ? ( 
-        <ul> 
-          {task.map((elemento) => 
-              ( <li key={elemento._id} className='item'> 
-              <div> 
-                <p>{elemento.name}</p> 
-              </div> 
-              </li> ))} 
-              </ul> ) 
-          : ( <p>No hay tareas disponibles</p> )} 
-          </div>
+     <div>
+        <div> 
+          {task.length > 0 ? ( 
+          <ul> 
+            {task.map((elemento) => 
+                ( <li key={elemento._id} className='item'> 
+                <Link to={`/${elemento._id}`}>
+                  <p>{elemento.name}</p> 
+                </Link>
+                </li> ))} 
+                </ul> ) 
+            : ( <p>No hay tareas disponibles</p> )} 
+        </div>
+        <div>
+          <CrearTarea/>
+        </div>
+      </div>
   )
 }
 
