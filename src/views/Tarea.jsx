@@ -4,13 +4,14 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import CrearTarea from '../Componentes/CrearTarea'
 import { Link } from 'react-router-dom'
-import DoneTask from '../Componentes/DoneTask'
+import Realizadas from '../Componentes/Realizadas'
+
 
 
 
 function Tarea() {
   const[task, setTask] = useState([])
-  const [tareasCompletadas, setTareasCompletadas] = useState([])
+  
   
 
  
@@ -35,28 +36,26 @@ function Tarea() {
  
 
 
-  const handleDone = (id) => {
-    const tareaCompletada = task.find((e) => e._id === id);
-    setTareasCompletadas([...tareasCompletadas, tareaCompletada]);
-    setTask(task.filter((e) => e._id !== id));
-  };
-
-
-
-  
-
-  const handleDelete = async (id) =>{
+  const handleDone = async (id) =>{
     try {
+      const response = await axios.post(`http://localhost:3002/app/tareaDone/${id}`);
       const deleteTask = await axios.delete(`http://localhost:3002/app/tarea/${id}`)
-     const newTasks = task.filter((elem) => elem._id !==id)
-      setTask(newTasks)
+      const updatedTask = task.filter((e) => e._id !== id);
+      setTask(updatedTask);
     } catch (error) {
       console.error(error)
     }
   }
 
+
+
+  
+
+
+
     return (     
      <div>
+      <h3>Tareas realizadas:<Realizadas/></h3>
         <div> 
           {task.length > 0 ? ( 
           <ul> 
@@ -64,15 +63,11 @@ function Tarea() {
                 ( <li key={elemento._id} className='item'> 
                 <Link to={`/${elemento._id}`}>
                   <p>{elemento.name}</p> 
-                  <button onClick={() => handleDone(elemento._id)}>COMPLETADA</button>
                 </Link>
-                <button onClick={()=>handleDelete(elemento._id)}>BORRAR</button>
+                <button onClick={() => handleDone(elemento._id)}>COMPLETADA</button>
                 </li> ))} 
                 </ul> ) 
             : ( <p>No hay tareas disponibles</p> )} 
-        </div>
-        <div>
-          <DoneTask tareasCompletadas={tareasCompletadas} />
         </div>
         <div>
           <CrearTarea tareaActualizada={tareaActualizada}/>
