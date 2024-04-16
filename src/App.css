@@ -196,3 +196,113 @@ form button[type="submit"]:hover {
 .filter button:hover {
   background-color: #0f0f0f;
 }
+
+
+/*Responsive para movil*/
+
+@media only screen and (max-width: 390px) and (max-height: 850px) {
+  .App {
+    text-align: center;
+    height: auto; 
+  }
+
+  body {
+    letter-spacing: 1px; 
+    font-family: Consolas, monospace;
+    background-image: url(https://res.cloudinary.com/josepcortes/image/upload/v1713223284/rambla-de-badal_rq7vo1.jpg);
+    background-size: 100%;
+  }
+
+  h1 {
+    margin-top: 15px; 
+    padding-top: 10px; 
+    font-size: 45px; 
+  }
+
+  .main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto; 
+    
+  }
+  .container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    padding: 15px;
+  }
+
+  .create-container {
+    width: 80%; 
+    margin-left: 0; 
+    margin-right: 0; 
+  }
+  .task-container {
+    width: 80%; 
+    margin-left: 0; 
+    margin-right: 0; 
+    margin-top: 20px
+  }
+
+  .item h4 {
+    font-size: 20px; 
+    margin-right: 10px; 
+  }
+
+  .item p {
+    font-size: 16px; 
+  }
+
+  .item button {
+    margin-right: 20px; 
+    padding: 8px;
+  }
+
+  .form {
+    margin-top: 10px; 
+  }
+  form label {
+    font-size: 16px; 
+    margin-bottom: 3px; 
+  }
+
+  form input,
+  form select {
+    width: 150px; 
+    height: 35px; 
+    margin-bottom: 10px; 
+    padding: 5px; 
+    font-size: 14px;
+  }
+
+  form button[type="submit"] {
+    width: 120px; 
+    height: 40px;
+    font-size: 16px; 
+  }
+
+  .home-button {
+   margin-top: 15px;
+    width: 150px;
+    height: 50px; 
+    font-size: 16px; 
+  }
+  .filter {
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+  }
+
+  .filter input[type="text"] {
+    width: 200px; 
+    height: 30px;
+    padding: 5px; 
+    font-size: 12px;
+    margin-right: 5px; 
+  }
+
+  .filter button {
+    padding: 6px 12px; 
+  }
+
+}
