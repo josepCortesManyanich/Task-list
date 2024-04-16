@@ -11,6 +11,9 @@ import Realizadas from '../Componentes/Realizadas'
 
 function Tarea() {
   const[task, setTask] = useState([])
+  const[busqueda, setBusqueda] = useState('')
+  const [tareasEncontradas, setTareasEncontradas] = useState([])
+  const [tareasOrdenadas, setTareasOrdenadas] = useState([])
   
   useEffect(() => {
     const data = async () =>{
@@ -41,41 +44,72 @@ function Tarea() {
     }
   }
 
+  const handleSearch = (e) => {
+    const valorBuscado = e.target.value.toLowerCase();
+    setBusqueda(valorBuscado)
+    let tareaEncontrada = []
+
+    if(task){
+      const tarea = task.filter((e) => e.name.toLowerCase().includes(valorBuscado))
+      tareaEncontrada = [...tareaEncontrada, ...tarea]
+    }
+    setTareasEncontradas(tareaEncontrada)
+  }
+
+  const handlePriority = () =>{
+    const tareaOrdenada = task.slice().sort((a,b) =>{
+      return a.prioridad - b. prioridad
+    })
+    setTareasOrdenadas(tareaOrdenada)
+  }
+  
+  const tareasMostradas = tareasEncontradas.length > 0 ? tareasEncontradas : tareasOrdenadas.length > 0 ? tareasOrdenadas : task;
+
+
     return (     
       <>
-      <header> 
-          <h1>OUR TO DO-LIST</h1>
-          <h3>Tareas realizadas:<Realizadas/></h3>
-      </header>
      
-     <div className='main-container'>
-      <div className='container'>
-      <div className='create-container'><CrearTarea tareaActualizada={tareaActualizada}/></div>
-      <div className='task-container'> 
-        
-          {task.length > 0 ? ( 
-          <ul> 
-            {task.map((elemento) => 
-                ( <li key={elemento._id} className='item'> 
-        
-            
-               <Link to={`/${elemento._id}`} className='texto-item'><h4>{elemento.name}</h4> </Link>
-                <p >Propiedad:{elemento.propiedad} </p>
-               
-                <div>
-          
-        </div>
-                <div className='button-wrapper'><button onClick={() => handleDone(elemento._id)}>COMPLETADA</button></div>
-                </li> ))} 
-                </ul> ) 
-            : ( <p>No hay tareas disponibles</p> )} 
-        </div>
-        
+        <h1>OUR TO DO-LIST</h1>
+        <h3>Tareas realizadas: <Realizadas /></h3>
+      
+
+      <div className='main-container'>
+        <div className='container'>
+          <div className='create-container'><CrearTarea tareaActualizada={tareaActualizada} />
+          </div>
+
+          <div className='task-container'>
+              <div className='filter'>
+                <input 
+                  type="text"
+                  value={busqueda}
+                  onChange={handleSearch}
+                  placeholder="Buscar"
+                />
+                <button onClick={handlePriority}>PRIORIDAD</button>
+              </div>
+
+            <ul>
+              {tareasMostradas.map((elemento) => (
+                <li key={elemento._id} className='item'>
+                  <Link to={`/${elemento._id}`} className='texto-item'>
+                    <h4>{elemento.name}</h4>
+                  </Link>
+                  <p>Propiedad: {elemento.propiedad}</p>
+                  <div className='button-wrapper'>
+                    <button onClick={() => handleDone(elemento._id)}>COMPLETADA</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-      </>
+    </>
+)};
+
       
-  )
-}
+  
+
 
 export default Tarea
