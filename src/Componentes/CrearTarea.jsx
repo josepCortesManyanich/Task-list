@@ -10,7 +10,7 @@ function CrearTarea({tareaActualizada}) {
         description:'',
         propiedad:'Raquel',
 })
-const[mostrar, setMostrar] = useState(false)
+
 
 const handleChange = (e) => {
        
@@ -37,19 +37,13 @@ const handleChange = (e) => {
       }
      
 
-const handleContenido = async () => {
-        setMostrar(!mostrar)
-}
+
 
     
     return (
-        <>
-         <button onClick={handleContenido}>
-                {mostrar ? 'Ocultar' : 'Crear'}
-        </button>
     <div>
-       
-        {mostrar && ( <form onSubmit={handleSubmit}>
+
+        <form onSubmit={handleSubmit}>
        <label>Nombre</label>
                 <input type="text" placeholder="Nombre" name="name" value={task.name} onChange={handleChange} />
         <label>Prioridad</label>
@@ -65,11 +59,10 @@ const handleContenido = async () => {
                 <input type="text" placeholder="Description" name="description" value={task.description} onChange={handleChange}/>
                 
                 <button type="submit">CREAR</button>
-         </form>)}
+         </form>
       
                 
     </div>
-    </>
   )
 }
 
