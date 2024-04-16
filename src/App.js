@@ -1,5 +1,6 @@
 
 import './App.css';
+import CrearTarea from './Componentes/CrearTarea';
 import EditarTarea from './Componentes/EditarTarea';
 import Tarea from './views/Tarea';
 import {  Route, Routes } from 'react-router-dom';
@@ -14,7 +15,7 @@ function App() {
      
       <Routes>     
          <Route path="/" element={<Tarea/>} />
-       
+          <Route path="/" element={<CrearTarea/>}/>
          <Route path="/:id" element={<EditarTarea/>} />
       </Routes>
     

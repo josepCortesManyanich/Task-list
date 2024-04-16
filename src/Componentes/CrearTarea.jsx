@@ -43,10 +43,12 @@ const handleContenido = async () => {
 
     
     return (
-    <div>
-        <button onClick={handleContenido}>
+        <>
+         <button onClick={handleContenido}>
                 {mostrar ? 'Ocultar' : 'Crear'}
         </button>
+    <div>
+       
         {mostrar && ( <form onSubmit={handleSubmit}>
        <label>Nombre</label>
                 <input type="text" placeholder="Nombre" name="name" value={task.name} onChange={handleChange} />
@@ -67,6 +69,7 @@ const handleContenido = async () => {
       
                 
     </div>
+    </>
   )
 }
 

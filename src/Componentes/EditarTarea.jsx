@@ -59,7 +59,9 @@ const handleEdit = async (e) => {
   
   
     return (
-    <div>
+      <div className='main-container'>
+    <div className='container'>
+      <div className='create-container'>
       <form onSubmit={handleEdit}>
        <label>Nombre</label>
                 <input type="text" placeholder="Nombre" name="name" value={editTask.name} onChange={handleChange} />
@@ -77,6 +79,8 @@ const handleEdit = async (e) => {
                 
                 <button type="submit">EDITAR</button>
          </form>
+         </div>
+    </div>
     </div>
   )
 }
