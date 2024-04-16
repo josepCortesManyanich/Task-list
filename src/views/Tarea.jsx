@@ -43,7 +43,11 @@ function Tarea() {
 
     return (     
       <>
-      <h3>Tareas realizadas:<Realizadas/></h3>
+      <header> 
+          <h1>OUR TO DO-LIST</h1>
+          <h3>Tareas realizadas:<Realizadas/></h3>
+      </header>
+     
      <div className='main-container'>
       <div className='container'>
       <div className='create-container'><CrearTarea tareaActualizada={tareaActualizada}/></div>

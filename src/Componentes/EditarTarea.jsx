@@ -59,29 +59,34 @@ const handleEdit = async (e) => {
   
   
     return (
-      <div className='main-container'>
-    <div className='container'>
-      <div className='create-container'>
-      <form onSubmit={handleEdit}>
-       <label>Nombre</label>
-                <input type="text" placeholder="Nombre" name="name" value={editTask.name} onChange={handleChange} />
-        <label>Prioridad</label>
-                <input type="number" placeholder="Del 1-10" name="prioridad" value={editTask.prioridad} onChange={handleChange} />
-        <label>Quien la tiene que hacer</label>
-        <select value={editTask.propiedad} name="propiedad" onChange={handleChange}>
-                    <option value="Raquel">Raquel </option>
-                    <option value="Josep">Josep </option>
-        </select>
-        <label>Fecha</label>
-                <input type="text" placeholder="Fecha" name="fecha" value={editTask.fecha} onChange={handleChange}/>        
-        <label>Description</label>
-                <input type="text" placeholder="Description" name="description" value={editTask.description} onChange={handleChange}/>
-                
-                <button type="submit">EDITAR</button>
-         </form>
-         </div>
-    </div>
-    </div>
+      <>
+        <header> 
+          <h1>OUR TO DO-LIST</h1>
+        </header>
+        <div className='main-container'>
+          <div className='container'>
+            <div className='create-container'>
+              <form onSubmit={handleEdit}>
+                <label>Nombre</label>
+                        <input type="text" placeholder="Nombre" name="name" value={editTask.name} onChange={handleChange} />
+                <label>Prioridad</label>
+                        <input type="number" placeholder="Del 1-10" name="prioridad" value={editTask.prioridad} onChange={handleChange} />
+                <label>Quien la tiene que hacer</label>
+                <select value={editTask.propiedad} name="propiedad" onChange={handleChange}>
+                            <option value="Raquel">Raquel </option>
+                            <option value="Josep">Josep </option>
+                </select>
+                <label>Fecha</label>
+                        <input type="text" placeholder="Fecha" name="fecha" value={editTask.fecha} onChange={handleChange}/>        
+                <label>Description</label>
+                        <input type="text" placeholder="Description" name="description" value={editTask.description} onChange={handleChange}/>
+                        
+                        <button type="submit">EDITAR</button>
+              </form>
+            </div>
+        </div>
+      </div>
+    </>
   )
 }
 

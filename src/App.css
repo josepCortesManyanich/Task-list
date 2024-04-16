@@ -12,6 +12,12 @@ body{
   background-image: url(https://res.cloudinary.com/josepcortes/image/upload/v1713223284/rambla-de-badal_rq7vo1.jpg);
   background-size: cover;
 }
+h1{
+  margin-top: 25px;
+  padding-top: 15px;
+  color:white;
+  font-size: 65px;
+}
 
 /*estilos generales de las tareas*/
 .main-container {
