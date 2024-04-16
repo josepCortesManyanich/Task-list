@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
-
+import { Link } from 'react-router-dom'
 
 
 
@@ -84,6 +84,7 @@ const handleEdit = async (e) => {
                         <button type="submit">EDITAR</button>
               </form>
             </div>
+            <Link to='/'><button type='submit' className='home-button'> INICIO</button></Link>
         </div>
       </div>
     </>

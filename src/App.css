@@ -145,3 +145,17 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
   background-color: #32d13a;
 }
+
+/*boton de inicio*/
+
+.home-button{
+  width: 200px;
+  height: 75px;
+  font-size: 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
